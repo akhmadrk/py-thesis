@@ -1,0 +1,7 @@
+venv/
+
+venv_bertopic/
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo

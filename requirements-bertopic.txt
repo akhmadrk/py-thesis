@@ -1,0 +1,30 @@
+# requirements_bertopic.txt
+
+# Core utilities
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.5.2
+tqdm==4.67.1
+
+# Text preprocessing
+nltk==3.9.1
+sastrawi==1.0.1
+
+# Topic Modeling
+gensim==4.3.3          # untuk coherence score
+bertopic==0.16.0       # model utama
+
+# Embedding & Clustering
+sentence-transformers==3.1.1
+transformers==4.43.3
+umap-learn==0.5.6
+hdbscan==0.8.39
+
+# Visualization (optional)
+matplotlib==3.9.2
+seaborn==0.13.2
+wordcloud==1.9.3
+
+# (Opsional)
+mlflow==2.16.2
+typer==0.12.3
