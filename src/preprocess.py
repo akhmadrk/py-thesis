@@ -7,6 +7,11 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+
+stemmer_factory = StemmerFactory()
+stemmer = stemmer_factory.create_stemmer()
+
 
 # --- Inisialisasi stopword ---
 stop_words = set(stopwords.words("indonesian"))
@@ -125,10 +130,16 @@ def tokenize_text(text: str):
             merged.append(t)
 
     # 6️⃣ buang stopword umum & lafadz muqatha’at
-    final_tokens = [t for t in merged if t not in combined_stop and len(t) > 1]
+    filtered_tokens = [t for t in merged if t not in combined_stop and len(t) > 2]
 
-    # 7️⃣ opsional: hapus token jika hanya huruf tunggal (mis. "a", "i", "u")
-    final_tokens = [t for t in final_tokens if len(t) > 2]
+    # 7️⃣ stemming (AMAN)
+    stemmed_tokens = [stemmer.stem(t) for t in filtered_tokens]
+
+    # 8️⃣ filter ulang hasil stemming
+    final_tokens = [
+        t for t in stemmed_tokens
+        if t not in combined_stop and len(t) > 2
+    ]
 
     return final_tokens
 
